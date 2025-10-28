@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="styles.css">
+  <title>VozDaRua - Plataforma de Reclamações</title>
+</head>
+<body>
+  <header class="header" role="banner" aria-label="Menu superior">
+    <div class="header-content">
+      <img class="logo-img" src="VozDaRuaInt.png">
+      <h1><a href="#" class="logo-link" onclick="mostrarConteudoInicial(event)">VozDaRua</a></h1>
+      <nav>
+        <ul>
+          <li><button class="menu-btn" aria-label="Fazer Reclamação" onclick="mostrarFormulario()">Fazer Reclamação</button></li>
+          <li><button class="menu-btn" aria-label="Listar suas Reclamações" onclick="carregarReclamacoes()">Reclamações Registradas</button></li>
+          <li><button class="menu-btn" aria-label="Contatar Suporte" onclick="mostrarSuporte()">Contatar Suporte</button></li>
+          <li><button class="menu-btn" aria-label="Sobre Nós" onclick="mostrarSobre()">Sobre Nós</button></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-content" role="main">
+    <section class="intro" id="conteudo-inicial">
+  <div class="intro-grid">
+    <div class="intro-text">
+      <h2>Bem-vindo ao VozDaRua</h2>
+      <p>Compartilhe sua experiência e nos ajude a melhorar os serviços públicos da nossa cidade. Faça uma reclamação e acompanhe seu andamento.</p>
+
+      <div class="como-funciona">
+        <h2>Como Funciona?</h2>
+        <p>O processo é simples e rápido! Basta registrar a sua reclamação, que ela será encaminhada para os órgãos responsáveis, onde você poderá acompanhar o andamento e buscar a solução para o seu problema.</p>
+      </div>
+
+      <div class="seguranca">
+        <h2>Segurança e Privacidade</h2>
+        <p>Suas informações pessoais e a descrição de sua reclamação são totalmente protegidas. Trabalhamos com criptografia e seguimos as melhores práticas de segurança para garantir que sua participação seja totalmente segura e confidencial.</p>
+      </div>
+
+      <div class="beneficios">
+        <h2>Por que Usar o VozDaRua?</h2>
+        <ul>
+          <li><strong>Transparência:</strong> Acompanhe o andamento da sua reclamação em tempo real.</li>
+          <li><strong>Impacto:</strong> Sua reclamação é direcionada diretamente aos órgãos públicos responsáveis e fontes noticiárias parceiras.</li>
+          <li><strong>Contribuição para a Comunidade:</strong> Ajude a melhorar os serviços públicos e a qualidade de vida no seu bairro.</li>
+          <li><strong>Fácil e Rápido:</strong> Processo simples e intuitivo para você registrar sua reclamação em minutos.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="intro-map">
+      <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3675.303679730087!2d-47.060829!3d-22.909938!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94c8cf3e7c1d31bb%3A0x97d8f1c8c7a4c64f!2sCampinas%20-%20SP!5e0!3m2!1spt-BR!2sbr!4v1692564838000!5m2!1spt-BR!2sbr" 
+        allowfullscreen="" 
+        loading="lazy">
+      </iframe>
+
+      <div class="map-info">
+        <h3>📍 Informações de Campinas</h3>
+        <ul>
+          <li>Município: Campinas - SP</li>
+          <li>População: +1,2 milhão de habitantes</li>
+          <li>Principais Reclamações: buracos, esgoto, iluminação pública</li>
+          <li>Ajude a transformar sua cidade reportando problemas!</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+    <section class="form-reclamacao" id="form-reclamacao" style="display:none;">
+      <div class="caixa-atencao">
+      <h3>Atenção!</h3>
+      <p><strong>Faça uma reclamação apropriada!</strong></p>
+      <p>Nosso site é dedicado a receber reclamações e denúncias sobre problemas que afetam de forma significativa a qualidade de vida na cidade de Campinas, especialmente nas áreas de Infraestrutura, Saúde, Ensino e serviços públicos essenciais.</p>
+      <p>Pedimos que evitem enviar reclamações sobre assuntos de menor impacto coletivo, como pichações, barulho de vizinhos, desentendimentos pessoais ou problemas pontuais sem relevância pública. Esses casos devem ser tratados por canais apropriados, como a polícia ou a administração do condomínio, por exemplo.</p>
+      </div>
+
+      <h2>Nova Reclamação</h2>
+      <form id="formReclamacao" enctype="multipart/form-data">
+        <label for="descricao">Descrição</label>
+        <textarea id="descricao" name="descricao" rows="4" required></textarea>
+
+        <!-- COLOCAR IMAGENS NAS DESCRIÇÕES -->
+        <label for="imagem">Imagem do Problema (opcional)</label>
+        <input type="file" id="imagem" name="imagem" accept="image/*" />
+
+        <label for="categoria">Categoria</label>
+        <select id="categoria" name="categoria" required>
+          <option value="">Selecione</option>
+          <option value="saude">Saúde</option>
+          <option value="infraestrutura">Infraestrutura</option>
+          <option value="ensino">Ensino</option>
+          <option value="outro">Outro</option>
+        </select>
+
+        <label for="nome">Nome</label>
+        <input type="text" id="nome" name="nome" required />
+
+        <label for="cpf">CPF</label>
+        <input type="text" id="cpf" name="cpf" required pattern="\d{11}" placeholder="Apenas números" />
+
+        <label for="endereco">Endereço</label>
+        <input type="text" id="endereco" name="endereco" required />
+
+        <div id="mensagem-envio" style="margin-top: 10px;"></div>
+
+        <button type="submit">Enviar</button>
+      </form>
+    </section>
+
+    <section id="contato-suporte" style="display:none;">
+      <h2>Contatar Suporte</h2>
+      <p>Entre em contato conosco pelos canais abaixo:</p>
+      <ul>
+        <li><strong>📞 Telefone:</strong> (19) 91234-5678</li>
+        <li>
+          <strong>📱 WhatsApp:</strong>
+          <a href="https://wa.me/5519912345678" target="_blank">(19) 91234-5678</a>
+        </li>
+        <li>
+          <strong>📸 Instagram:</strong>
+          <a href="https://instagram.com/vozdarua.ofc" target="_blank">@vozdarua.ofc</a>
+        <li>
+          <strong>📧 E-mail:</strong>
+          <a>vozdarua.ofc@gmail.com</a>
+      </ul>
+    </section>
+
+    <section class="intro" id="sobre" style="display:none;">
+      <h2>VozDaRua - A Voz da Comunidade de Campinas</h2>
+      <p>
+        O VozDaRua é uma plataforma criada para que os moradores de Campinas-SP possam registrar e acompanhar problemas em
+        seus bairros, como falta de infraestrutura, saúde precária, ou questões educacionais. Nossa missão é dar visibilidade
+        a essas reclamações, facilitando a comunicação entre a população e os órgãos públicos responsáveis.
+      </p>
+      <p>
+        Sua participação é essencial para melhorar a cidade. Faça a diferença e ajude a transformar os problemas do seu bairro em
+        soluções concretas!
+      </p>
+    </section>
+
+    <section id="lista-reclamacoes" style="display:none;">
+      <h2>Reclamações Registradas</h2>
+      <div id="tabela-reclamacoes">
+      </div>
+    </section>
+  </main>
+
+  <script>
+    function toggleSections(sectionId) {
+      const sections = [
+        "conteudo-inicial",
+        "form-reclamacao",
+        "contato-suporte",
+        "sobre",
+        "lista-reclamacoes",
+      ];
+      sections.forEach((id) => {
+        document.getElementById(id).style.display = id === sectionId ? "flex" : "none";
+      });
+    }
+
+    function mostrarConteudoInicial(event) {
+      event.preventDefault();
+      toggleSections('conteudo-inicial');
+    }
+
+    function mostrarFormulario() {
+      toggleSections("form-reclamacao");
+    }
+
+    function carregarReclamacoes() {
+      toggleSections("lista-reclamacoes");
+      fetch("listar_reclamacoes_ajax.php")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("tabela-reclamacoes").innerHTML = data;
+        })
+        .catch((error) => {
+          console.error("Erro ao carregar reclamações:", error);
+          document.getElementById("tabela-reclamacoes").innerHTML =
+            "<p>Erro ao carregar dados.</p>";
+        });
+    }
+
+    function mostrarSuporte() {
+      toggleSections("contato-suporte");
+    }
+
+    function mostrarSobre() {
+      toggleSections("sobre");
+    }
+
+    // Função de validação matemática do CPF
+    function validarCPF(cpf) {
+      cpf = cpf.replace(/[^\d]+/g,''); // remove caracteres não numéricos
+      if (cpf.length !== 11 || /^(\d)\1+$/.test(cpf)) return false;
+
+      let soma = 0, resto;
+
+      // primeiro dígito verificador
+      for (let i = 1; i <= 9; i++) soma += parseInt(cpf[i-1]) * (11 - i);
+      resto = (soma * 10) % 11;
+      if ((resto === 10) || (resto === 11)) resto = 0;
+      if (resto !== parseInt(cpf[9])) return false;
+
+      soma = 0;
+      // segundo dígito verificador
+      for (let i = 1; i <= 10; i++) soma += parseInt(cpf[i-1]) * (12 - i);
+      resto = (soma * 10) % 11;
+      if ((resto === 10) || (resto === 11)) resto = 0;
+      if (resto !== parseInt(cpf[10])) return false;
+
+      return true;
+    }
+
+    document.getElementById("formReclamacao").addEventListener("submit", function (event) {
+    event.preventDefault(); // Impede o recarregamento da página
+
+    const cpfInput = document.getElementById("cpf").value;
+    if (!validarCPF(cpfInput)) {
+      alert("CPF inválido! Por favor, insira um CPF válido.");
+      return;
+    }
+
+    const form = this;
+    const formData = new FormData(form);
+
+    fetch("salvar_reclamacao.php", {
+      method: "POST",
+      body: formData,
+    })
+      .then((response) => response.text())
+      .then((data) => {
+        document.getElementById("mensagem-envio").innerHTML = data;
+        form.reset(); // Limpa o formulário
+      })
+      .catch((error) => {
+        console.error("Erro:", error);
+        document.getElementById("mensagem-envio").innerHTML = "<p>Erro ao enviar a reclamação. Tente novamente.</p>";
+      });
+  });
+  </script>
+</body>
+</html>
+
