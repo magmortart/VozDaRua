@@ -5,10 +5,7 @@ Este é um site feito com HTML, CSS, JavaScript e PHP, hospedado no WampServer e
 ## Como rodar o projeto
 
 1. **Clone o repositório** no seu computador:
-   - Baixe o projeto clicando em "Code" → "Download ZIP" ou use o Git para clonar o repositório:
-     ```bash
-     git clone https://github.com/usuario/vozdarua.git
-     ```
+   - Baixe o projeto clicando em "Code" → "Download ZIP"
 
 2. **Instale o WampServer** no seu computador.
    - Baixe o WampServer [aqui](http://www.wampserver.com/en/).
